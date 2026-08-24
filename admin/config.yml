@@ -1,0 +1,35 @@
+# 1. CONFIGURACIÓN DEL BACKEND
+# "git-gateway" es el puente de Netlify que permite a tu familiar subir cosas 
+# a tu GitHub sin necesitar una cuenta de programador.
+backend:
+  name: git-gateway
+  branch: main # Cambia esto si tu rama principal en GitHub se llama "master"
+
+# 2. GESTIÓN DE IMÁGENES
+# media_folder: Dónde se guardarán físicamente las fotos en tu repositorio cuando ella las suba.
+# public_folder: La ruta que se escribirá en el JSON para que el HTML pueda encontrar la foto.
+media_folder: "assets/images/productos"
+public_folder: "/assets/images/productos"
+
+# 3. ESTRUCTURA DE DATOS (Colecciones)
+collections:
+  - name: "productos"
+    label: "Productos de la Tienda" # Esto es lo que ella leerá en el panel
+    folder: "content/productos"     # Carpeta donde se guardarán los archivos JSON
+    create: true                    # Permite a tu familiar crear nuevos productos (no solo editar)
+    format: "json"                  # Obliga al sistema a guardar todo en formato JSON
+    
+    # "slug" define cómo se llamará el archivo JSON. Ej: "2026-10-18-silla-gamer.json"
+    # Esto evita que dos archivos se llamen igual y se sobrescriban.
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    
+    # 4. CAMPOS DEL FORMULARIO VISUAL
+    # Estos son los espacios que ella llenará. Cada 'widget' define el tipo de control 
+    # (ej. 'string' es texto corto, 'text' es un área grande, 'image' abre un buscador de archivos).
+    fields:
+      - { label: "ID del Producto", name: "id", widget: "string", hint: "Escribe un código único, ej: PROD-001" }
+      - { label: "Título del Producto", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text", hint: "Describe los detalles, medidas y estado." }
+      - { label: "Precio (USD)", name: "price", widget: "number", value_type: "float", hint: "Usa punto para decimales, ej: 49.99" }
+      - { label: "Imagen Principal", name: "image", widget: "image" }
+      - { label: "Enlace de Pago (Stripe)", name: "stripe_link", widget: "string", hint: "Pega aquí el enlace del Buy Button de Stripe." }

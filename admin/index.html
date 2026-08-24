@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración - Tienda</title>
+  
+  <!-- 1. WIDGET DE AUTENTICACIÓN -->
+  <!-- Esto carga la ventana emergente para que tu familiar inicie sesión con su correo y contraseña. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  
+  <!-- 2. MOTOR DEL CMS -->
+  <!-- Este script descarga toda la interfaz gráfica de Decap CMS directamente desde una CDN (servidor externo), sin que ocupe espacio en tu repositorio. -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <!-- 3. LÓGICA DE REDIRECCIÓN -->
+  <script>
+    // Cuando el usuario inicia sesión exitosamente, este código fuerza a la página 
+    // a recargarse dentro de la ruta /admin/ para mostrar el panel de control 
+    // en lugar de quedarse en la página principal.
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

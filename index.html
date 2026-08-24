@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El título cambiará dinámicamente según el idioma -->
+    <title data-i18n="pageTitle">Everything For Your Home - Store</title>
+    
+    <!-- Enlace a nuestra hoja de estilos modular -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    
+    <!-- CABECERA DE LA TIENDA -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Logo principal referenciado exactamente como indicaste -->
+            <img src="image_39f1aa.jpg" alt="Everything For Your Home Logo" class="store-logo">
+            
+            <!-- Controles de usuario -->
+            <div class="header-actions">
+                <button id="lang-toggle" class="btn-lang">ES / EN</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-content">
+        <!-- Título del catálogo con soporte para traducción -->
+        <h1 class="catalog-title" data-i18n="catalogTitle">Featured Products</h1>
+        
+        <!-- VITRINA DE PRODUCTOS (Grid) -->
+        <!-- Aquí es donde nuestro JavaScript inyectará las tarjetas de producto -->
+        <div id="products-grid" class="grid-container">
+            <!-- Mensaje temporal mientras los datos se descargan de GitHub -->
+            <div class="loading-state">
+                <p data-i18n="loading">Loading products...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- LÓGICA DE LA APLICACIÓN -->
+    <!-- Usamos type="module" para poder importar archivos JS separados de forma moderna -->
+    <script type="module" src="assets/js/main.js"></script>
+
+</body>
+</html>
