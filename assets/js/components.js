@@ -85,17 +85,18 @@ export function createProductCard(product, lang = 'en') {
         badgeHtml = `<div class="badge">${product.badge}</div>`;
     }
 
-    // Inyectamos el HTML de la tarjeta
+    // Inyectamos el HTML de la tarjeta con el diseño premium
     card.innerHTML = `
         ${badgeHtml}
+        <button class="fav-btn" onclick="this.style.color='#d32f2f'">🤍</button>
         <img src="${imagePath}" alt="${product.title}" class="product-image" loading="lazy">
         <div class="product-details">
-            <h2 style="font-size: 1rem; font-weight: normal; margin-bottom: 0.5rem;">${product.title}</h2>
-            <div style="margin-bottom: 1rem;">
+            <h3 style="font-size: 1rem; font-weight: normal; margin-bottom: 5px;">${product.title}</h3>
+            <div class="price-box">
                 ${oldPriceHtml}
-                <span class="price">${formattedPrice}</span>
+                <span class="current-price">${formattedPrice}</span>
             </div>
-            <button class="btn-primary btn-comprar">Ver producto</button>
+            <button class="btn-comprar">Comprar ahora</button>
         </div>
     `;
 
