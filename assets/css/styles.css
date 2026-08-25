@@ -1,170 +1,117 @@
-/* ==========================================================================
-   VARIABLES GLOBALES (Paleta de colores adaptada al logo y estilo Mercado Libre)
-   ========================================================================== */
 :root {
-    --brand-navy: #15243b;    /* Azul marino oscuro del logo */
-    --brand-gold: #c29b57;    /* Dorado del logo */
-    --bg-color: #ebebeb;      /* Gris claro estándar de e-commerce */
-    --card-bg: #ffffff;       /* Blanco puro para contraste */
-    --text-main: #333333;
-    --text-muted: #666666;
-    --btn-stripe: #635bff;    /* Azul clásico de Stripe para dar confianza en el pago */
-    --radius: 8px;
-}
-
-/* ==========================================================================
-   RESETEO BÁSICO
-   ========================================================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --brand-navy: #15243b;
+    --brand-gold: #c29b57;
+    --brand-yellow: #f4c242;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --text-dark: #333333;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
+    margin: 0;
+    font-family: sans-serif;
+    background-color: var(--bg-light);
 }
 
-/* ==========================================================================
-   CABECERA (HEADER)
-   ========================================================================== */
 .main-header {
-    background-color: var(--card-bg);
-    border-bottom: 4px solid var(--brand-navy);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: var(--white);
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
 }
 
 .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.store-logo {
-    height: 80px;
-    object-fit: contain;
+.sub-nav {
+    background-color: var(--brand-navy);
+    color: var(--white);
+    padding: 0.8rem;
 }
 
-/* Botón de cambio de idioma */
-.btn-lang {
-    background: transparent;
-    border: 2px solid var(--brand-gold);
-    color: var(--brand-navy);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.2s ease;
+.sub-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.btn-lang:hover {
-    background-color: var(--brand-gold);
-    color: var(--card-bg);
-}
-
-/* ==========================================================================
-   CONTENEDOR DE PRODUCTOS (GRID)
-   ========================================================================== */
-.main-content {
-    max-width: 1200px;
+/* EL SECRETO DEL DISEÑO: CSS GRID */
+.store-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* 250px para sidebar, el resto para productos */
+    gap: 2rem;
+    max-width: 1400px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
-.catalog-title {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    color: var(--brand-navy);
+.sidebar {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    height: fit-content;
 }
 
-/* Sistema de grilla autoadaptable. No necesitas media queries para que sea responsivo */
-.grid-container {
+.hero-banner {
+    background-color: #e6e3dd;
+    padding: 3rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
 }
 
-.loading-state {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 3rem;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-}
-
-/* ==========================================================================
-   TARJETA DE PRODUCTO (PRODUCT CARD)
-   ========================================================================== */
+/* TARJETA TIPO MERCADO LIBRE / DISEÑO NUEVO */
 .product-card {
-    background-color: var(--card-bg);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.product-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--brand-yellow);
+    color: var(--text-dark);
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
 }
 
 .product-image {
     width: 100%;
-    height: 250px;
-    object-fit: contain; /* Evita que la foto del producto se deforme o recorte */
-    padding: 1rem;
-    border-bottom: 1px solid var(--bg-color);
+    height: 200px;
+    object-fit: contain;
 }
 
-.product-details {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Permite que el botón de compra siempre baje al final */
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
 }
 
-.product-title {
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-}
-
-.product-price {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-}
-
-.product-description {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-    line-height: 1.4;
-}
-
-/* Botón de Stripe */
-.btn-buy {
-    background-color: var(--btn-stripe);
-    color: var(--card-bg);
-    text-align: center;
-    text-decoration: none;
+.btn-primary {
+    background-color: var(--brand-gold);
+    color: var(--white);
+    border: none;
     padding: 0.8rem;
+    width: 100%;
     border-radius: 4px;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.btn-buy:hover {
-    background-color: #4b44d3; /* Un tono un poco más oscuro al pasar el ratón */
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
 }
