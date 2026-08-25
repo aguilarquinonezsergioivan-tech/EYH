@@ -1,47 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- El título cambiará dinámicamente según el idioma -->
-    <title data-i18n="pageTitle">Everything For Your Home - Store</title>
-    
-    <!-- Enlace a nuestra hoja de estilos modular -->
+    <title>Everything For Your Home</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    
-    <!-- CABECERA DE LA TIENDA -->
+    <!-- HEADER ESTILO MARKETPLACE -->
     <header class="main-header">
         <div class="header-container">
-            <!-- Logo principal referenciado exactamente como indicaste -->
-            <img src="image_39f1aa.jpg" alt="Everything For Your Home Logo" class="store-logo">
-            
-            <!-- Controles de usuario -->
+            <img src="image_39f1aa.jpg" alt="Logo" class="store-logo">
+            <input type="text" class="search-bar" placeholder="Buscar en mis productos...">
             <div class="header-actions">
-                <button id="lang-toggle" class="btn-lang">ES / EN</button>
+                <span>Compra 100% Segura</span>
+                <button id="lang-toggle" class="btn-outline">ES / EN</button>
             </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="main-content">
-        <!-- Título del catálogo con soporte para traducción -->
-        <h1 class="catalog-title" data-i18n="catalogTitle">Featured Products</h1>
+    <!-- NAVEGACIÓN SECUNDARIA -->
+    <nav class="sub-nav">
+        <ul>
+            <li>Todas las categorías</li>
+            <li>Inicio</li>
+            <li>Productos</li>
+            <li>Novedades</li>
+            <li>Ofertas</li>
+        </ul>
+    </nav>
+
+    <!-- LAYOUT PRINCIPAL (Sidebar + Contenido) -->
+    <div class="store-layout">
         
-        <!-- VITRINA DE PRODUCTOS (Grid) -->
-        <!-- Aquí es donde nuestro JavaScript inyectará las tarjetas de producto -->
-        <div id="products-grid" class="grid-container">
-            <!-- Mensaje temporal mientras los datos se descargan de GitHub -->
-            <div class="loading-state">
-                <p data-i18n="loading">Loading products...</p>
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+            <h3>Categorías</h3>
+            <ul class="category-list">
+                <li>Muebles</li>
+                <li>Decoración</li>
+                <li>Iluminación</li>
+            </ul>
+            <div class="whatsapp-widget">
+                <p>¿Necesitas ayuda?</p>
+                <button class="btn-whatsapp">Contáctame por WhatsApp</button>
             </div>
-        </div>
-    </main>
+        </aside>
 
-    <!-- LÓGICA DE LA APLICACIÓN -->
-    <!-- Usamos type="module" para poder importar archivos JS separados de forma moderna -->
+        <!-- CONTENIDO CENTRAL -->
+        <main class="main-content">
+            <!-- BANNER PRINCIPAL -->
+            <section class="hero-banner">
+                <div class="hero-text">
+                    <h2>TRANSFORMA TU HOGAR con estilo</h2>
+                    <button class="btn-primary">Ver productos</button>
+                </div>
+            </section>
+
+            <h3 class="section-title">Productos destacados</h3>
+            
+            <!-- GRID DE PRODUCTOS -->
+            <div id="products-grid" class="products-grid">
+                <!-- El JS inyectará los productos aquí -->
+            </div>
+        </main>
+    </div>
+
     <script type="module" src="assets/js/main.js"></script>
-
 </body>
 </html>
