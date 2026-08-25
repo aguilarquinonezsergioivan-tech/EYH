@@ -1,35 +1,35 @@
-# 1. CONFIGURACIÓN DEL BACKEND
-# "git-gateway" es el puente de Netlify que permite a tu familiar subir cosas 
-# a tu GitHub sin necesitar una cuenta de programador.
 backend:
   name: git-gateway
-  branch: main # Cambia esto si tu rama principal en GitHub se llama "master"
+  branch: main 
 
-# 2. GESTIÓN DE IMÁGENES
-# media_folder: Dónde se guardarán físicamente las fotos en tu repositorio cuando ella las suba.
-# public_folder: La ruta que se escribirá en el JSON para que el HTML pueda encontrar la foto.
 media_folder: "assets/images/productos"
 public_folder: "/assets/images/productos"
 
-# 3. ESTRUCTURA DE DATOS (Colecciones)
 collections:
+  # 1. SISTEMA DE SUBIDA DE PRODUCTOS (El que ya teníamos)
   - name: "productos"
-    label: "Productos de la Tienda" # Esto es lo que ella leerá en el panel
-    folder: "content/productos"     # Carpeta donde se guardarán los archivos JSON
-    create: true                    # Permite a tu familiar crear nuevos productos (no solo editar)
-    format: "json"                  # Obliga al sistema a guardar todo en formato JSON
-    
-    # "slug" define cómo se llamará el archivo JSON. Ej: "2026-10-18-silla-gamer.json"
-    # Esto evita que dos archivos se llamen igual y se sobrescriban.
+    label: "Productos"
+    folder: "content/productos"
+    create: true
+    format: "json"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    
-    # 4. CAMPOS DEL FORMULARIO VISUAL
-    # Estos son los espacios que ella llenará. Cada 'widget' define el tipo de control 
-    # (ej. 'string' es texto corto, 'text' es un área grande, 'image' abre un buscador de archivos).
     fields:
-      - { label: "ID del Producto", name: "id", widget: "string", hint: "Escribe un código único, ej: PROD-001" }
+      - { label: "Etiqueta (Ej. ¡NUEVO!, -15%)", name: "badge", widget: "string", required: false }
       - { label: "Título del Producto", name: "title", widget: "string" }
-      - { label: "Descripción", name: "description", widget: "text", hint: "Describe los detalles, medidas y estado." }
-      - { label: "Precio (USD)", name: "price", widget: "number", value_type: "float", hint: "Usa punto para decimales, ej: 49.99" }
-      - { label: "Imagen Principal", name: "image", widget: "image" }
-      - { label: "Enlace de Pago (Stripe)", name: "stripe_link", widget: "string", hint: "Pega aquí el enlace del Buy Button de Stripe." }
+      - { label: "Precio Anterior", name: "old_price", widget: "number", required: false }
+      - { label: "Precio Actual", name: "price", widget: "number" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Enlace de Pago", name: "payment_link", widget: "string", hint: "URL de Stripe o Mercado Pago" }
+
+  # 2. SISTEMA DE CONFIGURACIÓN DE RECIBOS (¡NUEVO!)
+  # Usamos "files" en lugar de "folder" porque es un archivo único, no una lista de productos.
+  - name: "configuracion"
+    label: "Configuración de Tienda y Recibos"
+    files:
+      - file: "content/settings/factura.json"
+        label: "Datos Legales para Recibos"
+        name: "factura"
+        fields:
+          - { label: "Nombre Legal de la Tienda", name: "store_name", widget: "string" }
+          - { label: "RFC / Identificación Fiscal", name: "tax_id", widget: "string" }
+          - { label: "Mensaje de Agradecimiento", name: "footer_msg", widget: "string" }
