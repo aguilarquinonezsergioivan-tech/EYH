@@ -4,84 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everything For Your Home</title>
-    <!-- Importamos una fuente premium y moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- CABECERA PRINCIPAL -->
-    <header class="main-header">
-        <div class="header-container">
-            <img src="image_39f1aa.jpg" alt="Logo" class="store-logo">
+    <!-- 1. TOP BAR (Logo, Buscador, Cuenta, Carrito) -->
+    <header class="top-header">
+        <div class="container header-grid">
+            <img src="image_39f1aa.jpg" alt="Logo" class="logo">
             
-            <!-- Buscador mejorado -->
-            <div class="search-box">
-                <input type="text" class="search-bar" placeholder="Buscar en mis productos...">
-                <button class="search-btn">🔍</button>
+            <div class="search-container">
+                <input type="text" placeholder="Buscar en mis productos...">
+                <button class="btn-search">🔍</button>
             </div>
 
-            <div class="header-actions">
-                <span class="trust-badge">🛡️ Compra 100% Segura</span>
-                <button id="lang-toggle" class="btn-outline">ES / EN</button>
+            <div class="header-badges">
+                <div class="badge-item">
+                    <span>🛡️</span>
+                    <div>
+                        <strong>Compra 100% Segura</strong>
+                        <small>Tus datos están protegidos</small>
+                    </div>
+                </div>
+                <div class="badge-item">
+                    <span>👤</span>
+                    <div>
+                        <strong>Mi Cuenta</strong>
+                        <small>Mi tienda</small>
+                    </div>
+                </div>
+                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
             </div>
         </div>
     </header>
 
-    <!-- NAVEGACIÓN SECUNDARIA -->
-    <nav class="sub-nav">
-        <ul>
-            <li class="active">Todas las categorías</li>
-            <li>Inicio</li>
-            <li>Productos</li>
-            <li>Novedades</li>
-            <li>Ofertas</li>
-        </ul>
+    <!-- 2. NAV BAR (Categorías, Links, Banner Envío) -->
+    <nav class="main-nav">
+        <div class="container nav-flex">
+            <div class="btn-categories">☰ Todas las categorías</div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Sobre mí</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="shipping-banner">
+                🚚 <strong>Envíos rápidos a todo el país</strong> <small>De 1 a 3 días hábiles</small>
+            </div>
+        </div>
     </nav>
 
-    <!-- LAYOUT PRINCIPAL -->
-    <div class="store-layout">
+    <!-- 3. LAYOUT PRINCIPAL -->
+    <div class="container store-layout">
         
-        <!-- BARRA LATERAL -->
+        <!-- SIDEBAR IZQUIERDA -->
         <aside class="sidebar">
-            <h3 class="sidebar-title">Categorías</h3>
-            <ul class="category-list">
-                <li>🛋️ Muebles <span>></span></li>
-                <li>🪴 Decoración <span>></span></li>
-                <li>💡 Iluminación <span>></span></li>
-                <li>🛏️ Textiles <span>></span></li>
-                <li>🍳 Cocina <span>></span></li>
-            </ul>
-            
-            <div class="whatsapp-widget">
-                <div class="wa-icon">🎧</div>
-                <div>
-                    <p class="wa-title">¿Necesitas ayuda?</p>
-                    <p class="wa-sub">Estoy aquí para ti</p>
+            <div class="category-menu">
+                <h3>Categorías <span>></span></h3>
+                <ul>
+                    <li>🛋️ Muebles <span>></span></li>
+                    <li>🖼️ Decoración <span>></span></li>
+                    <li>💡 Iluminación <span>></span></li>
+                    <li>🛏️ Textiles para el hogar <span>></span></li>
+                    <li>🍳 Cocina y comedor <span>></span></li>
+                    <li>📦 Organización <span>></span></li>
+                    <li>🪴 Jardín y exterior <span>></span></li>
+                    <li>⭐ Novedades <span>></span></li>
+                    <li class="ofertas-link">🏷️ Ofertas <span>></span></li>
+                </ul>
+            </div>
+
+            <div class="promo-box dark-blue">
+                <div class="icon">🏆</div>
+                <h4>Soy el único vendedor</h4>
+                <p>Todos los productos son seleccionados y enviados por mí.</p>
+            </div>
+
+            <div class="promo-box white-box">
+                <div class="icon-flex">
+                    <span class="icon-headset">🎧</span>
+                    <div>
+                        <h4>¿Necesitas ayuda?</h4>
+                        <p>Estoy aquí para ti</p>
+                    </div>
                 </div>
-                <button class="btn-whatsapp">Contáctame por WhatsApp</button>
+                <button class="btn-gold-outline">Contáctame por WhatsApp</button>
+            </div>
+
+            <div class="promo-box dark-blue banner-mini">
+                <div class="icon-flex">
+                    <span>📦</span>
+                    <div>
+                        <h4>Nuevos productos cada semana</h4>
+                        <p>Descubre lo último para tu hogar</p>
+                    </div>
+                </div>
             </div>
         </aside>
 
         <!-- CONTENIDO CENTRAL -->
         <main class="main-content">
-            <!-- BANNER PRINCIPAL MEJORADO -->
-            <section class="hero-banner">
-                <div class="hero-content">
-                    <h2>TRANSFORMA TU HOGAR</h2>
-                    <h2 class="hero-highlight">con estilo</h2>
-                    <p>Productos seleccionados para hacer de tu casa, el mejor lugar.</p>
-                    <button class="btn-primary">Ver productos →</button>
-                </div>
-            </section>
-
-            <h3 class="section-title">🔥 Productos destacados</h3>
             
-            <!-- GRID DE PRODUCTOS -->
+            <!-- SECCIÓN HERO (Banner Principal + Banner Secundario) -->
+            <div class="hero-grid">
+                <div class="hero-main">
+                    <h1>TRANSFORMA TU HOGAR <span class="cursive-text">con estilo</span></h1>
+                    <p>Productos seleccionados para hacer de tu casa, el mejor lugar.</p>
+                    <button class="btn-dark">Ver productos →</button>
+                </div>
+                <div class="hero-side">
+                    <h3>OFERTAS EXCLUSIVAS</h3>
+                    <p>SOLO EN MI TIENDA</p>
+                    <button class="btn-dark">Ver ofertas</button>
+                </div>
+            </div>
+
+            <!-- BARRA DE CARACTERÍSTICAS -->
+            <div class="features-bar">
+                <div class="feature"><span class="feat-icon">💎</span> <div><strong>Productos únicos</strong><br><small>Seleccionados por mí</small></div></div>
+                <div class="feature"><span class="feat-icon">🛡️</span> <div><strong>Calidad garantizada</strong><br><small>Lo mejor para tu hogar</small></div></div>
+                <div class="feature"><span class="feat-icon">💬</span> <div><strong>Atención personalizada</strong><br><small>Estoy para ayudarte</small></div></div>
+                <div class="feature"><span class="feat-icon">🚚</span> <div><strong>Envíos rápidos</strong><br><small>A todo el país</small></div></div>
+            </div>
+
+            <!-- TÍTULO DE PRODUCTOS Y CONTROLES -->
+            <div class="products-header">
+                <div class="title-flex">
+                    <h2>🔥 Productos destacados</h2>
+                    <span class="subtitle">Lo mejor de mi tienda, elegido para ti</span>
+                </div>
+                <div class="carousel-controls">
+                    <button>&#10094;</button>
+                    <button>&#10095;</button>
+                </div>
+            </div>
+            
+            <!-- GRID DE PRODUCTOS DINÁMICO -->
             <div id="products-grid" class="products-grid">
-                <!-- Aquí van a aparecer los productos mágicamente -->
+                <!-- JavaScript inyectará las tarjetas aquí -->
             </div>
         </main>
     </div>
+
+    <!-- NEWSLETTER / FOOTER -->
+    <footer class="bottom-footer container">
+        <div class="newsletter-box">
+            <div>
+                <h4>¿Quieres ofertas exclusivas?</h4>
+                <p>Suscríbete y recibe descuentos solo para ti.</p>
+            </div>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Tu correo electrónico">
+                <button type="submit">Suscribirme</button>
+            </form>
+        </div>
+    </footer>
 
     <script type="module" src="assets/js/main.js"></script>
 </body>
