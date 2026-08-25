@@ -1,117 +1,207 @@
+/* =========================================
+   1. VARIABLES GLOBALES Y RESET
+   ========================================= */
 :root {
-    --brand-navy: #15243b;
+    --brand-navy: #111b2b;
     --brand-gold: #c29b57;
-    --brand-yellow: #f4c242;
-    --bg-light: #f8f9fa;
+    --brand-gold-hover: #b08945;
+    --bg-main: #f5f5f5;
     --white: #ffffff;
     --text-dark: #333333;
+    --text-light: #777777;
+    --border-color: #e0e0e0;
 }
 
-body {
+* {
     margin: 0;
-    font-family: sans-serif;
-    background-color: var(--bg-light);
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
+body { background-color: var(--bg-main); color: var(--text-dark); }
+
+/* =========================================
+   2. CABECERA Y BUSCADOR
+   ========================================= */
 .main-header {
     background-color: var(--white);
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+    padding: 1.2rem 2rem;
 }
 
 .header-container {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
+    gap: 2rem;
 }
 
+.store-logo { height: 60px; object-fit: contain; }
+
+.search-box {
+    flex-grow: 1;
+    max-width: 600px;
+    display: flex;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.search-btn {
+    background-color: var(--brand-gold);
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+}
+.search-btn:hover { background-color: var(--brand-gold-hover); }
+
+.header-actions { display: flex; align-items: center; gap: 1.5rem; }
+.trust-badge { font-weight: 600; color: #2c974b; font-size: 0.9rem; }
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--text-dark);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* =========================================
+   3. NAVEGACIÓN SECUNDARIA
+   ========================================= */
 .sub-nav {
     background-color: var(--brand-navy);
-    color: var(--white);
-    padding: 0.8rem;
+    padding: 12px 2rem;
 }
 
 .sub-nav ul {
+    max-width: 1400px;
+    margin: 0 auto;
     list-style: none;
     display: flex;
     gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* EL SECRETO DEL DISEÑO: CSS GRID */
+.sub-nav li { cursor: pointer; opacity: 0.8; transition: opacity 0.2s; }
+.sub-nav li:hover, .sub-nav li.active { opacity: 1; }
+
+/* =========================================
+   4. LAYOUT Y BARRA LATERAL
+   ========================================= */
 .store-layout {
     display: grid;
-    grid-template-columns: 250px 1fr; /* 250px para sidebar, el resto para productos */
+    grid-template-columns: 260px 1fr;
     gap: 2rem;
     max-width: 1400px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
-.sidebar {
+.sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.sidebar-title {
+    background-color: var(--brand-gold);
+    color: var(--white);
+    padding: 12px 15px;
+    border-radius: 8px 8px 0 0;
+    font-size: 1rem;
+}
+
+.category-list {
     background: var(--white);
-    padding: 1rem;
-    border-radius: 8px;
-    height: fit-content;
-}
-
-.hero-banner {
-    background-color: #e6e3dd;
-    padding: 3rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-}
-
-/* TARJETA TIPO MERCADO LIBRE / DISEÑO NUEVO */
-.product-card {
-    background: var(--white);
-    border-radius: 8px;
-    padding: 1rem;
-    position: relative;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 0;
+    margin-top: -1.5rem; /* Pega la lista al título */
 }
 
-.badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--brand-yellow);
+.category-list li {
+    padding: 15px;
+    border-bottom: 1px solid var(--bg-main);
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
     color: var(--text-dark);
-    padding: 3px 8px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 4px;
+    transition: background 0.2s;
+}
+.category-list li:hover { background-color: #fafafa; color: var(--brand-gold); }
+.category-list li:last-child { border-bottom: none; }
+
+.whatsapp-widget {
+    background-color: var(--brand-navy);
+    color: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.product-image {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-}
+.wa-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.wa-title { font-weight: bold; font-size: 1.1rem; }
+.wa-sub { font-size: 0.8rem; opacity: 0.8; margin-bottom: 1rem; }
 
-.price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--text-dark);
-}
-
-.btn-primary {
+.btn-whatsapp {
     background-color: var(--brand-gold);
     color: var(--white);
     border: none;
-    padding: 0.8rem;
+    padding: 10px;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 20px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: 1rem;
+}
+
+/* =========================================
+   5. BANNER HERO Y PRODUCTOS
+   ========================================= */
+.hero-banner {
+    /* Aquí usamos una imagen de muebles real desde Unsplash para que impacte */
+    background: linear-gradient(rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.7)), 
+                url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=1200') center/cover;
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.hero-content h2 { font-size: 2.5rem; color: var(--brand-navy); line-height: 1.1; }
+.hero-highlight { font-family: cursive; color: var(--brand-gold) !important; font-size: 3rem !important; margin-bottom: 1rem; }
+.hero-content p { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 2rem; max-width: 400px; }
+
+.btn-primary {
+    background-color: var(--brand-navy);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.btn-primary:hover { transform: scale(1.05); }
+
+.section-title { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 1.5rem; }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
 }
