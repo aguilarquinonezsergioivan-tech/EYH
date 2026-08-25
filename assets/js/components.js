@@ -1,36 +1,52 @@
-/**
- * REGLA DE ORO: Este archivo solo crea elementos visuales, no hace peticiones a internet.
- */
+// Función para generar un recibo dinámico en una ventana nueva
+export async function generarRecibo(producto) {
+    try {
+        // 1. Buscamos los datos de la tienda que tu familiar configuró en el CMS
+        const configResponse = await fetch('content/settings/factura.json');
+        const tienda = await configResponse.json();
 
-export function createProductCard(product, lang = 'en') {
-    // 1. Creamos el contenedor principal de la tarjeta
-    const card = document.createElement('article');
-    card.className = 'product-card';
+        // 2. Creamos una ventana emergente
+        const ventanaRecibo = window.open('', '_blank');
+        
+        // 3. Escribimos el HTML del recibo combinando los datos dinámicos
+        ventanaRecibo.document.write(`
+            <html>
+            <head>
+                <title>Recibo - ${producto.title}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 40px; color: #333; }
+                    .header { border-bottom: 2px solid #15243b; padding-bottom: 20px; }
+                    .total { font-size: 24px; font-weight: bold; color: #c29b57; }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h1>${tienda.store_name}</h1>
+                    <p>RFC: ${tienda.tax_id}</p>
+                </div>
+                <h2>Detalle de Compra</h2>
+                <p><strong>Producto:</strong> ${producto.title}</p>
+                <p class="total"><strong>Total:</strong> $${producto.price}</p>
+                <br>
+                <p><em>${tienda.footer_msg}</em></p>
+                
+                <!-- Script automático para abrir el diálogo de impresión/guardar PDF -->
+                <script>
+                    window.onload = function() { window.print(); }
+                </script>
+            </body>
+            </html>
+        `);
+        ventanaRecibo.document.close();
 
-    // 2. Formateamos el precio para que siempre se vea como moneda de Estados Unidos (ej. $49.99)
-    const formattedPrice = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    }).format(product.price);
+        // 4. Redirigimos al enlace de pago (Mercado Pago o Stripe)
+        setTimeout(() => {
+            window.location.href = producto.payment_link;
+        }, 1500);
 
-    // 3. Limpiamos la ruta de la imagen (por si el CMS añade un slash extra al inicio)
-    const imagePath = product.image.startsWith('/') ? product.image : `/${product.image}`;
-    
-    // 4. Lógica simple para el texto del botón de Stripe
-    const buyText = lang === 'es' ? 'Comprar Ahora' : 'Buy Now';
-
-    // 5. Inyectamos la información en el HTML. 
-    // Usamos las clases CSS que definiste en styles.css (Módulo 2)
-    card.innerHTML = `
-        <img src="${imagePath}" alt="${product.title}" class="product-image" loading="lazy">
-        <div class="product-details">
-            <h2 class="product-title">${product.title}</h2>
-            <div class="product-price">${formattedPrice}</div>
-            <p class="product-description">${product.description}</p>
-            <!-- El enlace de Stripe se convierte en un botón de acción real -->
-            <a href="${product.stripe_link}" target="_blank" rel="noopener noreferrer" class="btn-buy">${buyText}</a>
-        </div>
-    `;
-
-    return card;
+    } catch (error) {
+        console.error("No se pudo cargar la configuración de la factura", error);
+        // Si falla, simplemente enviamos al usuario al pago
+        window.location.href = producto.payment_link;
+    }
 }
