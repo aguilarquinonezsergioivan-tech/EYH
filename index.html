@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everything For Your Home</title>
+    <!-- Importamos una fuente premium y moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- HEADER ESTILO MARKETPLACE -->
+    <!-- CABECERA PRINCIPAL -->
     <header class="main-header">
         <div class="header-container">
             <img src="image_39f1aa.jpg" alt="Logo" class="store-logo">
-            <input type="text" class="search-bar" placeholder="Buscar en mis productos...">
+            
+            <!-- Buscador mejorado -->
+            <div class="search-box">
+                <input type="text" class="search-bar" placeholder="Buscar en mis productos...">
+                <button class="search-btn">🔍</button>
+            </div>
+
             <div class="header-actions">
-                <span>Compra 100% Segura</span>
+                <span class="trust-badge">🛡️ Compra 100% Segura</span>
                 <button id="lang-toggle" class="btn-outline">ES / EN</button>
             </div>
         </div>
@@ -22,7 +30,7 @@
     <!-- NAVEGACIÓN SECUNDARIA -->
     <nav class="sub-nav">
         <ul>
-            <li>Todas las categorías</li>
+            <li class="active">Todas las categorías</li>
             <li>Inicio</li>
             <li>Productos</li>
             <li>Novedades</li>
@@ -30,38 +38,47 @@
         </ul>
     </nav>
 
-    <!-- LAYOUT PRINCIPAL (Sidebar + Contenido) -->
+    <!-- LAYOUT PRINCIPAL -->
     <div class="store-layout">
         
         <!-- BARRA LATERAL -->
         <aside class="sidebar">
-            <h3>Categorías</h3>
+            <h3 class="sidebar-title">Categorías</h3>
             <ul class="category-list">
-                <li>Muebles</li>
-                <li>Decoración</li>
-                <li>Iluminación</li>
+                <li>🛋️ Muebles <span>></span></li>
+                <li>🪴 Decoración <span>></span></li>
+                <li>💡 Iluminación <span>></span></li>
+                <li>🛏️ Textiles <span>></span></li>
+                <li>🍳 Cocina <span>></span></li>
             </ul>
+            
             <div class="whatsapp-widget">
-                <p>¿Necesitas ayuda?</p>
+                <div class="wa-icon">🎧</div>
+                <div>
+                    <p class="wa-title">¿Necesitas ayuda?</p>
+                    <p class="wa-sub">Estoy aquí para ti</p>
+                </div>
                 <button class="btn-whatsapp">Contáctame por WhatsApp</button>
             </div>
         </aside>
 
         <!-- CONTENIDO CENTRAL -->
         <main class="main-content">
-            <!-- BANNER PRINCIPAL -->
+            <!-- BANNER PRINCIPAL MEJORADO -->
             <section class="hero-banner">
-                <div class="hero-text">
-                    <h2>TRANSFORMA TU HOGAR con estilo</h2>
-                    <button class="btn-primary">Ver productos</button>
+                <div class="hero-content">
+                    <h2>TRANSFORMA TU HOGAR</h2>
+                    <h2 class="hero-highlight">con estilo</h2>
+                    <p>Productos seleccionados para hacer de tu casa, el mejor lugar.</p>
+                    <button class="btn-primary">Ver productos →</button>
                 </div>
             </section>
 
-            <h3 class="section-title">Productos destacados</h3>
+            <h3 class="section-title">🔥 Productos destacados</h3>
             
             <!-- GRID DE PRODUCTOS -->
             <div id="products-grid" class="products-grid">
-                <!-- El JS inyectará los productos aquí -->
+                <!-- Aquí van a aparecer los productos mágicamente -->
             </div>
         </main>
     </div>
