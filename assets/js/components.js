@@ -1,14 +1,18 @@
-// Función para generar un recibo dinámico en una ventana nueva
+/**
+ * ARCHIVO COMPLETO: components.js
+ * Contiene la lógica del recibo Y la construcción visual de la tarjeta
+ */
+
+// 1. FUNCIÓN DE RECIBOS DINÁMICOS
 export async function generarRecibo(producto) {
     try {
-        // 1. Buscamos los datos de la tienda que tu familiar configuró en el CMS
+        // Buscamos los datos de la tienda configurados en el CMS
         const configResponse = await fetch('content/settings/factura.json');
         const tienda = await configResponse.json();
 
-        // 2. Creamos una ventana emergente
+        // Creamos la ventana del recibo
         const ventanaRecibo = window.open('', '_blank');
         
-        // 3. Escribimos el HTML del recibo combinando los datos dinámicos
         ventanaRecibo.document.write(`
             <html>
             <head>
@@ -30,7 +34,6 @@ export async function generarRecibo(producto) {
                 <br>
                 <p><em>${tienda.footer_msg}</em></p>
                 
-                <!-- Script automático para abrir el diálogo de impresión/guardar PDF -->
                 <script>
                     window.onload = function() { window.print(); }
                 </script>
@@ -39,14 +42,66 @@ export async function generarRecibo(producto) {
         `);
         ventanaRecibo.document.close();
 
-        // 4. Redirigimos al enlace de pago (Mercado Pago o Stripe)
+        // Redirigimos al pago después de 1.5 segundos
         setTimeout(() => {
             window.location.href = producto.payment_link;
         }, 1500);
 
     } catch (error) {
         console.error("No se pudo cargar la configuración de la factura", error);
-        // Si falla, simplemente enviamos al usuario al pago
+        // Si no hay factura configurada aún, igual lo mandamos a pagar
         window.location.href = producto.payment_link;
     }
+}
+
+
+// 2. FUNCIÓN CONSTRUCTORA DE LA TARJETA (Actualizada al nuevo diseño)
+export function createProductCard(product, lang = 'en') {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+
+    // Formatear precio principal (Cambiado a Pesos Mexicanos según tu diseño)
+    const formattedPrice = new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    }).format(product.price);
+
+    // Formatear precio anterior si existe
+    let oldPriceHtml = '';
+    if (product.old_price) {
+        const formattedOld = new Intl.NumberFormat('es-MX', {
+            style: 'currency',
+            currency: 'MXN'
+        }).format(product.old_price);
+        oldPriceHtml = `<span style="text-decoration: line-through; color: #999; font-size: 0.9em; margin-right: 10px;">${formattedOld}</span>`;
+    }
+
+    // Ruta de imagen segura
+    const imagePath = product.image.startsWith('/') ? product.image : `/${product.image}`;
+    
+    // Etiqueta flotante (Ej. ¡NUEVO!) si existe
+    let badgeHtml = '';
+    if (product.badge) {
+        badgeHtml = `<div class="badge">${product.badge}</div>`;
+    }
+
+    // Inyectamos el HTML de la tarjeta
+    card.innerHTML = `
+        ${badgeHtml}
+        <img src="${imagePath}" alt="${product.title}" class="product-image" loading="lazy">
+        <div class="product-details">
+            <h2 style="font-size: 1rem; font-weight: normal; margin-bottom: 0.5rem;">${product.title}</h2>
+            <div style="margin-bottom: 1rem;">
+                ${oldPriceHtml}
+                <span class="price">${formattedPrice}</span>
+            </div>
+            <button class="btn-primary btn-comprar">Ver producto</button>
+        </div>
+    `;
+
+    // Conectamos el botón de esta tarjeta con la función del recibo que está arriba
+    const btnComprar = card.querySelector('.btn-comprar');
+    btnComprar.addEventListener('click', () => generarRecibo(product));
+
+    return card;
 }
