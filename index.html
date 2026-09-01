@@ -4,164 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everything For Your Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- 1. TOP BAR (Logo, Buscador, Cuenta, Carrito) -->
+    <!-- HEADER SUPERIOR (Buscador y Carrito) -->
     <header class="top-header">
-        <div class="container header-grid">
-            <img src="image_39f1aa.jpg" alt="Logo" class="logo">
+        <div class="container header-content">
+            <!-- Menú hamburguesa (Solo móvil) -->
+            <button class="mobile-menu-btn">☰</button>
             
-            <div class="search-container">
-                <input type="text" placeholder="Buscar en mis productos...">
-                <button class="btn-search">🔍</button>
+            <div class="logo">
+                <!-- Reemplaza con tu logo final -->
+                <span style="color: var(--brand-gold); font-size: 1.5rem;">🏠</span>
+                <div class="logo-text">
+                    <strong>EVERYTHIN4</strong><br>
+                    <small>YOUR HOME</small>
+                </div>
             </div>
 
-            <div class="header-badges">
-                <div class="badge-item">
-                    <span>🛡️</span>
+            <div class="search-bar desktop-only">
+                <input type="text" placeholder="Buscar productos, categorías o marcas...">
+                <button>🔍</button>
+            </div>
+
+            <div class="header-actions">
+                <div class="action-item desktop-only">
+                    <span>🚚</span>
                     <div>
-                        <strong>Compra 100% Segura</strong>
-                        <small>Tus datos están protegidos</small>
+                        <strong>Envíos rápidos</strong>
+                        <small>1 a 3 días hábiles</small>
                     </div>
                 </div>
-                <a href="./admin/" class="badge-item" style="text-decoration: none; color: inherit; cursor: pointer;">
+                <div class="action-item desktop-only">
                     <span>👤</span>
-                    <div>
-                        <strong>Mi Cuenta</strong>
-                        <small>Acceso Admin</small>
-                    </div>
-                </a>
-                <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+                </div>
+                <div class="cart-icon">
+                    🛒 <span class="cart-count">2</span>
+                </div>
+            </div>
+        </div>
+        <!-- Buscador móvil (Debajo del header en celular) -->
+        <div class="container mobile-only">
+            <div class="search-bar mobile-search">
+                <input type="text" placeholder="Buscar productos...">
+                <button>🔍</button>
             </div>
         </div>
     </header>
 
-    <!-- 2. NAV BAR (Categorías, Links, Banner Envío) -->
-    <nav class="main-nav">
+    <!-- BARRA DE NAVEGACIÓN SECUNDARIA (Solo Escritorio) -->
+    <nav class="sub-nav desktop-only">
         <div class="container nav-flex">
-            <div class="btn-categories">☰ Todas las categorías</div>
+            <div class="btn-categories">
+                ☰ Todas las categorías <span>▼</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
+                <li><a href="#" class="active">Inicio</a></li>
                 <li><a href="#">Productos</a></li>
                 <li><a href="#">Novedades</a></li>
                 <li><a href="#">Ofertas</a></li>
                 <li><a href="#">Sobre mí</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
-            <div class="shipping-banner">
-                🚚 <strong>Envíos rápidos a todo el país</strong> <small>De 1 a 3 días hábiles</small>
-            </div>
         </div>
     </nav>
 
-    <!-- 3. LAYOUT PRINCIPAL -->
+    <!-- LAYOUT PRINCIPAL -->
     <div class="container store-layout">
         
-        <!-- SIDEBAR IZQUIERDA -->
-        <aside class="sidebar">
+        <!-- BARRA LATERAL (Categorías - Oculta en móvil) -->
+        <aside class="sidebar desktop-only">
             <div class="category-menu">
-                <h3>Categorías <span>></span></h3>
+                <p class="menu-title">CATEGORÍAS</p>
                 <ul>
-                    <li>🛋️ Muebles <span>></span></li>
-                    <li>🖼️ Decoración <span>></span></li>
-                    <li>💡 Iluminación <span>></span></li>
-                    <li>🛏️ Textiles para el hogar <span>></span></li>
-                    <li>🍳 Cocina y comedor <span>></span></li>
-                    <li>📦 Organización <span>></span></li>
-                    <li>🪴 Jardín y exterior <span>></span></li>
-                    <li>⭐ Novedades <span>></span></li>
-                    <li class="ofertas-link">🏷️ Ofertas <span>></span></li>
+                    <li>🛋️ Muebles</li>
+                    <li>🖼️ Decoración</li>
+                    <li>💡 Iluminación</li>
+                    <li>🛏️ Textiles para el hogar</li>
+                    <li>🍳 Cocina y comedor</li>
+                    <li>📦 Organización</li>
+                    <li>🪴 Jardín y exterior</li>
+                    <li>⭐ Novedades</li>
+                    <li class="ofertas-link">🏷️ Ofertas</li>
                 </ul>
             </div>
 
-            <div class="promo-box dark-blue">
-                <div class="icon">🏆</div>
-                <h4>Soy el único vendedor</h4>
+            <div class="promo-box dark-navy">
+                <div class="icon-gold">🏆</div>
+                <h4>SOY EL ÚNICO VENDEDOR</h4>
                 <p>Todos los productos son seleccionados y enviados por mí.</p>
             </div>
 
             <div class="promo-box white-box">
-                <div class="icon-flex">
-                    <span class="icon-headset">🎧</span>
-                    <div>
-                        <h4>¿Necesitas ayuda?</h4>
-                        <p>Estoy aquí para ti</p>
-                    </div>
-                </div>
-                <button class="btn-gold-outline">Contáctame por WhatsApp</button>
-            </div>
-
-            <div class="promo-box dark-blue banner-mini">
-                <div class="icon-flex">
-                    <span>📦</span>
-                    <div>
-                        <h4>Nuevos productos cada semana</h4>
-                        <p>Descubre lo último para tu hogar</p>
-                    </div>
-                </div>
+                <div class="icon-gold">💬</div>
+                <h4>¿Necesitas ayuda?</h4>
+                <p>Estoy aquí para ti.</p>
+                <button class="btn-outline-dark">Contáctame</button>
             </div>
         </aside>
 
         <!-- CONTENIDO CENTRAL -->
         <main class="main-content">
             
-            <!-- SECCIÓN HERO (Banner Principal + Banner Secundario) -->
+            <!-- BANNERS HERO -->
             <div class="hero-grid">
                 <div class="hero-main">
-                    <h1>TRANSFORMA TU HOGAR <span class="cursive-text">con estilo</span></h1>
-                    <p>Productos seleccionados para hacer de tu casa, el mejor lugar.</p>
+                    <h1>TRANSFORMA<br>TU HOGAR<br><span class="cursive-text">con estilo</span></h1>
+                    <p>Productos seleccionados para hacer de tu hogar un mejor lugar.</p>
                     <button class="btn-dark">Ver productos →</button>
                 </div>
                 <div class="hero-side">
-                    <h3>OFERTAS EXCLUSIVAS</h3>
+                    <div class="tag-icon">🏷️</div>
+                    <h2>OFERTAS<br>EXCLUSIVAS</h2>
                     <p>SOLO EN MI TIENDA</p>
-                    <button class="btn-dark">Ver ofertas</button>
+                    <button class="btn-gold">Ver ofertas</button>
                 </div>
             </div>
 
-            <!-- BARRA DE CARACTERÍSTICAS -->
+            <!-- CARACTERÍSTICAS -->
             <div class="features-bar">
-                <div class="feature"><span class="feat-icon">💎</span> <div><strong>Productos únicos</strong><br><small>Seleccionados por mí</small></div></div>
-                <div class="feature"><span class="feat-icon">🛡️</span> <div><strong>Calidad garantizada</strong><br><small>Lo mejor para tu hogar</small></div></div>
-                <div class="feature"><span class="feat-icon">💬</span> <div><strong>Atención personalizada</strong><br><small>Estoy para ayudarte</small></div></div>
-                <div class="feature"><span class="feat-icon">🚚</span> <div><strong>Envíos rápidos</strong><br><small>A todo el país</small></div></div>
+                <div class="feature"><span>💎</span> <div><strong>Productos únicos</strong><br><small>Seleccionados por mí</small></div></div>
+                <div class="feature"><span>🛡️</span> <div><strong>Calidad garantizada</strong><br><small>Lo mejor para tu hogar</small></div></div>
+                <div class="feature"><span>💬</span> <div><strong>Atención personalizada</strong><br><small>Estoy para ayudarte</small></div></div>
+                <div class="feature"><span>🚚</span> <div><strong>Envíos rápidos</strong><br><small>A todo el país</small></div></div>
             </div>
 
-            <!-- TÍTULO DE PRODUCTOS Y CONTROLES -->
-            <div class="products-header">
-                <div class="title-flex">
-                    <h2>🔥 Productos destacados</h2>
-                    <span class="subtitle">Lo mejor de mi tienda, elegido para ti</span>
-                </div>
-                <div class="carousel-controls">
-                    <button>&#10094;</button>
-                    <button>&#10095;</button>
-                </div>
+            <!-- TÍTULO PRODUCTOS -->
+            <div class="section-header">
+                <h2>🔥 Productos destacados</h2>
+                <a href="#" class="link-blue">Ver todos</a>
             </div>
             
-            <!-- GRID DE PRODUCTOS DINÁMICO -->
-            <div id="products-grid" class="products-grid">
-                <!-- JavaScript inyectará las tarjetas aquí -->
+            <!-- GRID DE PRODUCTOS (Aquí inyectarás los Buy Buttons de Shopify) -->
+            <div class="products-grid">
+                
+                <!-- Ejemplo de Tarjeta Estructural -->
+                <article class="product-card">
+                    <button class="fav-btn">🤍</button>
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=400" alt="Sofá" class="product-img">
+                    <div class="card-body">
+                        <small class="category-tag">Muebles</small>
+                        <h3 class="product-title">Sofá Seccional Moderno</h3>
+                        <p class="product-price">$8,999 MXN</p>
+                        <div class="stars">⭐⭐⭐⭐⭐ <small>(24)</small></div>
+                        <div class="card-actions">
+                            <button class="btn-outline">Ver detalles</button>
+                            <button class="btn-icon">🛒</button>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </main>
     </div>
 
-    <!-- NEWSLETTER / FOOTER -->
-    <footer class="bottom-footer container">
-        <div class="newsletter-box">
-            <div>
-                <h4>¿Quieres ofertas exclusivas?</h4>
-                <p>Suscríbete y recibe descuentos solo para ti.</p>
-            </div>
-            <form class="subscribe-form">
-                <input type="email" placeholder="Tu correo electrónico">
-                <button type="submit">Suscribirme</button>
-            </form>
-        </div>
-    </footer>
-
-    <script type="module" src="assets/js/main.js"></script>
+    <!-- NAVEGACIÓN INFERIOR TIPO APP (Solo Móvil) -->
+    <nav class="mobile-bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="icon">🏠</span>
+            <span class="label">Inicio</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">🗂️</span>
+            <span class="label">Categorías</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">🔍</span>
+            <span class="label">Buscar</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">🏷️</span>
+            <span class="label">Ofertas</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">👤</span>
+            <span class="label">Cuenta</span>
+        </a>
+    </nav>
 </body>
 </html>
