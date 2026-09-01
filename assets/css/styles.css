@@ -21,8 +21,7 @@ body { background-color: var(--bg-light); color: var(--text-main); }
 .top-header { background-color: var(--brand-dark); color: var(--white); padding: 15px 0; }
 .header-content { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .logo { display: flex; align-items: center; gap: 10px; }
-.logo-text strong { font-size: 1.2rem; letter-spacing: 1px; }
-.logo-text small { font-size: 0.6rem; letter-spacing: 2px; color: var(--brand-gold); }
+.store-logo { height: 60px; width: auto; object-fit: contain; }
 
 .search-bar { flex-grow: 1; max-width: 500px; display: flex; background: rgba(255,255,255,0.1); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); }
 .search-bar input { width: 100%; background: transparent; border: none; padding: 12px 15px; color: white; outline: none; }
@@ -120,6 +119,7 @@ body { background-color: var(--bg-light); color: var(--text-main); }
     
     /* 4. Ajustes del Header */
     .header-content { padding: 10px 0; }
+    .store-logo { height: 40px; }
     .mobile-menu-btn { background: transparent; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
     .mobile-search { margin-top: 10px; margin-bottom: 10px; }
     
